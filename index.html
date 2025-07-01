@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur d'unités</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Convertisseur d'unités</h1>
+    
+        <div class="conversion-section hidden" id="converterApp">
+            <h2>3. Effectuez la Conversion</h2>
+        <div class="converter-form">
+            <div class="input-group">
+                <label for="inputValue">Valeur à convertir:</label>
+                <input type="number" id="inputValue" placeholder="Entrez une valeur" step="any">
+            </div>
+            
+            <div class="select-group">
+                <div class="unit-select">
+                    <label for="fromUnit">De:</label>
+                    <select id="fromUnit">
+                        <option value="">Veuillez choisir une grandeur ci-dessus</option>
+                        <optgroup label="Longueur">
+                            <option value="meter">Mètre (m)</option>
+                            <option value="kilometer">Kilomètre (km)</option>
+                            <option value="centimeter">Centimètre (cm)</option>
+                            <option value="foot">Pied (ft)</option>
+                            <option value="mile">Mile (mi)</option>
+                            <option value="inch">Pouce (in)</option>
+                        </optgroup>
+                        <optgroup label="Masse">
+                            <option value="kilogram">Kilogramme (kg)</option>
+                            <option value="gram">Gramme (g)</option>
+                            <option value="pound">Livre (lb)</option>
+                            <option value="ounce">Once (oz)</option>
+                        </optgroup>
+                        <optgroup label="Volume">
+                            <option value="liter">Litre (L)</option>
+                            <option value="milliliter">Millilitre (mL)</option>
+                            <option value="gallon">Gallon (gal)</option>
+                        </optgroup>
+                        <optgroup label="Temps">
+                          <option value="s">Seconde (s)</option>
+                          <option value="min">Minute (min)</option>
+                          <option value="h">Heure (h)</option>
+                          <option value="d">Jour (d)</option>
+                        </optgroup>
+
+                        <optgroup label="Température">
+                           <option value="K">Kelvin (K)</option>
+                           <option value="C">Degré Celsius (°C)</option>
+                           <option value="F">Degré Fahrenheit (°F)</option>
+                           <option value="Ra">Degré Rankine (°Ra)</option>
+                           <option value="Re">Degré Réaumur (°Ré)</option>
+                        </optgroup>
+
+                        <optgroup label="Intensité Lumineuse">
+                           <option value="cd">Candela (cd)</option>
+                           <option value="lm">Lumen (lm)</option>
+                           <option value="lx">Lux (lx)</option>
+                        </optgroup>
+
+                        <optgroup label="Quantité de Matière">
+                           <option value="mol">Mole (mol)</option>
+                           <option value="kmol">Kilomole (kmol)</option>
+                           <option value="mmol">Millimole (mmol)</option>
+                        </optgroup>
+
+                        <optgroup label="Intensité Électrique">
+                            <option value="A">Ampère (A)</option>
+                            <option value="kA">Kiloampère (kA)</option>
+                            <option value="mA">Milliampère (mA)</option>
+                        <option value="µA">Microampère (µA)</option>
+                        </optgroup>
+            </select>
+                            
+                    </select>
+                </div>
+
+                <div class="unit-select">
+                    <label for="toUnit">Vers:</label>
+                    <select id="toUnit">
+                        <option value="">Veuillez choisir une grandeur ci-dessus</option>
+                        <optgroup label="Longueur">
+                            <option value="meter">Mètre (m)</option>
+                            <option value="kilometer">Kilomètre (km)</option>
+                            <option value="centimeter">Centimètre (cm)</option>
+                            <option value="foot">Pied (ft)</option>
+                            <option value="mile">Mile (mi)</option>
+                            <option value="inch">Pouce (in)</option>
+                        </optgroup>
+                        <optgroup label="Masse">
+                            <option value="kilogram">Kilogramme (kg)</option>
+                            <option value="gram">Gramme (g)</option>
+                            <option value="pound">Livre (lb)</option>
+                            <option value="ounce">Once (oz)</option>
+                        </optgroup>
+                        <optgroup label="Volume">
+                            <option value="liter">Litre (L)</option>
+                            <option value="milliliter">Millilitre (mL)</option>
+                            <option value="gallon">Gallon (gal)</option>
+                            <option value="fluidOunce">Once liquide (fl oz)</option>
+                        </optgroup>
+                        <optgroup label="Température">
+                            <option value="celsius">Celsius (°C)</option>
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <button id="convertButton">Convertir</button>
+
+            <div id="result" class="result-container">
+                <span id="resultValue"></span>
+            </div>
+              <p id="resultValue">Entrez une valeur et choisissez les unités.</p>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+   
+</body>
+</html>
