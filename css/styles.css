@@ -1,12 +1,15 @@
 /* Styles généraux */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    margin: 0;
     min-height: 100vh;
-    padding: 20px;
+    padding: 0;
     background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6b6b, #4facfe);
     background-size: 400% 400%;
     display: flex;
@@ -15,6 +18,7 @@ body {
     position: relative;
     animation: gradientAnimation 15s ease infinite;
 }
+
 
 @keyframes gradientAnimation {
     0% { background-position: 0% 50%; }
@@ -25,8 +29,9 @@ body {
 .container {
     width: calc(100% - 40px);
     max-width: 800px;
-    margin: 20px;
+    margin: 20px 0px;
     padding: 30px;
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
     box-shadow: 
@@ -47,14 +52,6 @@ h1 {
     font-size: 2.5em;
     font-weight: 600;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
-}
-h2 {
-    text-align: center;
-    color: #4a5568;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    font-size: 1.8em;
-    font-weight: 500;
 }
 
 .converter-form {
@@ -104,8 +101,6 @@ input:focus, select:focus {
     background-color: #fff;
 }
 
-
-
 label {
     font-weight: 500;
     color: #4a5568;
@@ -137,7 +132,6 @@ label {
     will-change: transform;
     backface-visibility: hidden;
     transform: translateZ(0);
-    overflow: hidden;
 }
 
 @keyframes buttonGradient {
