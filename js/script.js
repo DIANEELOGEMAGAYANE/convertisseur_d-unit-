@@ -1,8 +1,6 @@
 // Facteurs de conversion
 const conversionFactors = {
-    // ----------------------------
     // LONGUEUR
-    // ----------------------------
     meter: { kilometer: 0.001, centimeter: 100, inch: 39.3701, foot: 3.28084, yard: 1.09361, mile: 0.000621371 },
     kilometer: { meter: 1000, centimeter: 100000, inch: 39370.1, foot: 3280.84, yard: 1093.61, mile: 0.621371 },
     centimeter: { meter: 0.01, kilometer: 0.00001, inch: 0.393701, foot: 0.0328084, yard: 0.0109361, mile: 0.00000621371 },
@@ -11,51 +9,50 @@ const conversionFactors = {
     yard: { meter: 0.9144, kilometer: 0.0009144, centimeter: 91.44, inch: 36, foot: 3, mile: 0.000568182 },
     mile: { meter: 1609.34, kilometer: 1.60934, centimeter: 160934, inch: 63360, foot: 5280, yard: 1760 },
   
-    // ----------------------------
     // MASSE
-    // ----------------------------
+    
     kilogram: { gram: 1000, pound: 2.20462, ounce: 35.274 },
     gram: { kilogram: 0.001, pound: 0.00220462, ounce: 0.035274 },
     pound: { kilogram: 0.453592, gram: 453.592, ounce: 16 },
     ounce: { kilogram: 0.0283495, gram: 28.3495, pound: 0.0625 },
   
-    // ----------------------------
+  
     // TEMPS
-    // ----------------------------
+    
     second: { minute: 1 / 60, hour: 1 / 3600, day: 1 / 86400 },
     minute: { second: 60, hour: 1 / 60, day: 1 / 1440 },
     hour: { second: 3600, minute: 60, day: 1 / 24 },
     day: { second: 86400, minute: 1440, hour: 24 },
   
-    // ----------------------------
+  
     // INTENSITÉ ÉLECTRIQUE
-    // ----------------------------
+    
     ampere: { milliampere: 1000, microampere: 1000000 },
     milliampere: { ampere: 0.001, microampere: 1000 },
     microampere: { ampere: 0.000001, milliampere: 0.001 },
   
-    // ----------------------------
+   
     // TEMPÉRATURE
-    // ----------------------------
-    // ⚠️ Conversion spéciale → à gérer avec des fonctions car c'est pas linéaire
   
-    // ----------------------------
+    // Conversion spéciale → à gérer avec des fonctions car ce n'est pas linéaire
+  
+   
     // QUANTITÉ DE MATIÈRE
-    // ----------------------------
+   
     mole: { millimole: 1000, micromole: 1000000 },
     millimole: { mole: 0.001, micromole: 1000 },
     micromole: { mole: 0.000001, millimole: 0.001 },
   
-    // ----------------------------
+  
     // INTENSITÉ LUMINEUSE
-    // ----------------------------
+  
     candela: { millicandela: 1000, microcandela: 1000000 },
     millicandela: { candela: 0.001, microcandela: 1000 },
     microcandela: { candela: 0.000001, millicandela: 0.001 },
   
-    // ----------------------------
+ 
     // VOLUME
-    // ----------------------------
+  
     liter: { milliliter: 1000, gallon: 0.264172, quart: 1.05669, pint: 2.11338, fluidOunce: 33.814 },
     milliliter: { liter: 0.001, gallon: 0.000264172, quart: 0.00105669, pint: 0.00211338, fluidOunce: 0.033814 },
     gallon: { liter: 3.78541, milliliter: 3785.41, quart: 4, pint: 8, fluidOunce: 128 },
@@ -63,30 +60,30 @@ const conversionFactors = {
     pint: { liter: 0.473176, milliliter: 473.176, gallon: 0.125, quart: 0.5, fluidOunce: 16 },
     fluidOunce: { liter: 0.0295735, milliliter: 29.5735, gallon: 0.0078125, quart: 0.03125, pint: 0.0625 },
   
-    // ----------------------------
+   
     // VITESSE
-    // ----------------------------
+   
     meterPerSecond: { kilometerPerHour: 3.6, milePerHour: 2.23694 },
     kilometerPerHour: { meterPerSecond: 0.277778, milePerHour: 0.621371 },
     milePerHour: { meterPerSecond: 0.44704, kilometerPerHour: 1.60934 },
   
-    // ----------------------------
+   
     // FORCE
-    // ----------------------------
+    
     newton: { kilogramForce: 0.101972, poundForce: 0.224809 },
     kilogramForce: { newton: 9.80665, poundForce: 2.20462 },
     poundForce: { newton: 4.44822, kilogramForce: 0.453592 },
   
-    // ----------------------------
+  
     // PRESSION
-    // ----------------------------
+ 
     pascal: { bar: 1e-5, atmosphere: 9.86923e-6 },
     bar: { pascal: 100000, atmosphere: 0.986923 },
     atmosphere: { pascal: 101325, bar: 1.01325 },
   
-    // ----------------------------
+    
     // ÉNERGIE
-    // ----------------------------
+   
     joule: { kilojoule: 0.001, calorie: 0.239006, kilocalorie: 0.000239006 },
     kilojoule: { joule: 1000, calorie: 239.006, kilocalorie: 0.239006 },
     calorie: { joule: 4.184, kilojoule: 0.004184, kilocalorie: 0.001 },
