@@ -115,6 +115,12 @@ tl.from('.container', {
     y: 30,
     ease: 'back.out(1.7)'
 }, '-=0.5')
+.from('.app-description', {
+    duration: 0.8,
+    opacity: 0,
+    y: 20,
+    ease: 'power2.out'
+}, '-=0.5')
 .from('.input-group', {
     duration: 0.6,
     opacity: 0,
