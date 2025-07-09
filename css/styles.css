@@ -10,7 +10,8 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     padding: 0;
-    background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6b6b, #4facfe);
+    /* background: linear-gradient(-45deg, #6a11cb, #2575fc, #ff6b6b, #4facfe); */
+    background-color: #2575fc;
     background-size: 400% 400%;
     display: flex;
     align-items: center;
@@ -53,7 +54,13 @@ h1 {
     font-weight: 600;
     text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
 }
-
+.app-description{
+    text-align: center;
+    font-size: 16px;
+    color: #34445f;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
 .converter-form {
     display: flex;
     flex-direction: column;

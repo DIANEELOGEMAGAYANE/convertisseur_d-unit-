@@ -14,9 +14,8 @@ const conversionFactors = {
     kilogram: { gram: 1000, pound: 2.20462, ounce: 35.274 },
     gram: { kilogram: 0.001, pound: 0.00220462, ounce: 0.035274 },
     pound: { kilogram: 0.453592, gram: 453.592, ounce: 16 },
-    ounce: { kilogram: 0.0283495, gram: 28.3495, pound: 0.0625 },
-  
-  
+    ounce: { kilogram: 0.0283495, gram: 28.3495, po
+
     // TEMPS
     
     second: { minute: 1 / 60, hour: 1 / 3600, day: 1 / 86400 },
@@ -93,9 +92,11 @@ const conversionFactors = {
 
 document.addEventListener('DOMContentLoaded', function() {
 // Initialisation de GSAP
+// eslint-disable-next-line no-undef
 gsap.registerPlugin(ScrollTrigger);
 
 // Animation initiale de la page
+// eslint-disable-next-line no-undef
 const tl = gsap.timeline();
 
 tl.from('.container', {
@@ -109,6 +110,12 @@ tl.from('.container', {
     opacity: 0,
     y: 30,
     ease: 'back.out(1.7)'
+}, '-=0.5')
+.from('.app-description', {
+    duration: 0.8,
+    opacity: 0,
+    y: 20,
+    ease: 'power2.out'
 }, '-=0.5')
 .from('.input-group', {
     duration: 0.6,
@@ -131,6 +138,7 @@ tl.from('.container', {
 }, '-=0.2');
 
 // Animation du bouton
+// eslint-disable-next-line no-undef
 gsap.from('#convertButton', {
     duration: 0.6,
     y: 20,
@@ -216,6 +224,7 @@ function filtrerUnites() {
 }
 
 // Définir ici les labels des grandeurs de base du SI
+// eslint-disable-next-line no-unused-vars
 function isBaseSI(label) {
     const baseLabels = [
         'Longueur (SI)',
@@ -256,6 +265,7 @@ function convert(value, fromUnit, toUnit) {
     return "Conversion impossible";
 }
 
+// eslint-disable-next-line no-unused-vars
 function formatResult(value, unit) {
     if (typeof value === 'number') {
         const formatted = Math.abs(value) < 0.01 ? value.toExponential(2) : value.toFixed(2);
@@ -268,6 +278,7 @@ function formatResult(value, unit) {
 // Gestionnaire d'événement pour le bouton de conversion
 // Animation du bouton au clic
 convertButton.addEventListener('mouseover', () => {
+    // eslint-disable-next-line no-undef
     gsap.to(convertButton, {
         duration: 0.3,
         scale: 1.05,
@@ -276,6 +287,7 @@ convertButton.addEventListener('mouseover', () => {
 });
 
 convertButton.addEventListener('mouseout', () => {
+    // eslint-disable-next-line no-undef
     gsap.to(convertButton, {
         duration: 0.3,
         scale: 1,
@@ -285,6 +297,7 @@ convertButton.addEventListener('mouseout', () => {
 
 convertButton.addEventListener('click', () => {
     // Animation du clic
+    // eslint-disable-next-line no-undef
     gsap.timeline()
         .to(convertButton, {
             duration: 0.1,
@@ -299,6 +312,7 @@ convertButton.addEventListener('click', () => {
 
     const value = parseFloat(inputValue.value);
     if (isNaN(value)) {
+        // eslint-disable-next-line no-undef
         gsap.to(inputValue, {
             duration: 0.1,
             x: [-5, 5, -5, 5, 0],
@@ -316,11 +330,11 @@ convertButton.addEventListener('click', () => {
         resultValue.textContent = "Conversion impossible entre ces unités";
         return;
     }
-    
+
     // Obtenir les textes des options sélectionnées pour un affichage plus naturel
     const fromText = fromUnit.options[fromUnit.selectedIndex].text;
     const toText = toUnit.options[toUnit.selectedIndex].text;
-    
+
     // Formater le nombre avec 2 décimales ou en notation scientifique si nécessaire
     let formattedValue = value;
     let formattedResult = result;
