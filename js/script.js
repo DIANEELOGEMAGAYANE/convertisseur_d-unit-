@@ -299,6 +299,67 @@ convertButton.addEventListener('mouseout', () => {
     });
 });
 
+// === HISTORIQUE ===
+let historique = JSON.parse(localStorage.getItem('historique')) || [];
+
+function ajouterAHistorique(item) {
+    historique.push(item);
+    localStorage.setItem('historique', JSON.stringify(historique));
+    afficherHistorique();
+}
+
+function afficherHistorique() {
+    const historiqueDiv = document.getElementById('historique');
+    historiqueDiv.innerHTML = '';
+    if (historique.length === 0) {
+        historiqueDiv.innerHTML = '<div class="historique-vide">Aucune conversion enregistrée.</div>';
+        return;
+    }
+    // Bouton pour effacer l'historique
+    const clearBtn = document.createElement('button');
+    clearBtn.textContent = 'Effacer l\'historique';
+    clearBtn.className = 'btn-clear-historique';
+    clearBtn.onclick = function() {
+        historique = [];
+        localStorage.removeItem('historique');
+        afficherHistorique();
+    };
+    historiqueDiv.appendChild(clearBtn);
+    // Liste des conversions
+    const liste = document.createElement('div');
+    liste.className = 'historique-liste';
+    historique.slice().reverse().forEach(item => {
+        const ligne = document.createElement('div');
+        ligne.className = 'historique-item';
+        ligne.textContent = `${item.valeur} ${item.uniteDepart} = ${item.resultat} ${item.uniteArrivee} (${item.date})`;
+        liste.appendChild(ligne);
+    });
+    historiqueDiv.appendChild(liste);
+}
+
+// === TOGGLE HISTORIQUE ===
+const historiqueDiv = document.getElementById('historique');
+const toggleHistoriqueBtn = document.getElementById('toggleHistoriqueBtn');
+const container = document.querySelector('.container');
+const appWrapper = document.querySelector('.app-wrapper');
+
+// Masquer l'historique au départ
+historiqueDiv.classList.remove('visible');
+let historiqueVisible = false;
+
+toggleHistoriqueBtn.addEventListener('click', function() {
+    historiqueVisible = !historiqueVisible;
+    if (historiqueVisible) {
+        historiqueDiv.classList.add('visible');
+        appWrapper.classList.add('historique-ouvert');
+        toggleHistoriqueBtn.textContent = 'Masquer l\'historique';
+    } else {
+        historiqueDiv.classList.remove('visible');
+        appWrapper.classList.remove('historique-ouvert');
+        toggleHistoriqueBtn.textContent = 'Afficher l\'historique';
+    }
+});
+
 convertButton.addEventListener('click', () => {
     // Animation du clic
     // eslint-disable-next-line no-undef
@@ -356,6 +417,15 @@ convertButton.addEventListener('click', () => {
     }
     
     resultValue.textContent = `${formattedValue} ${fromText} = ${formattedResult} ${toText}`;
+
+    // Ajouter à l'historique
+    ajouterAHistorique({
+        valeur: formattedValue,
+        uniteDepart: fromText,
+        resultat: formattedResult,
+        uniteArrivee: toText,
+        date: new Date().toLocaleString()
+    });
 });
 
 // Mise à jour automatique des unités disponibles
@@ -378,4 +448,7 @@ fromUnit.addEventListener('change', () => {
 
 // Déclencher l'événement change au chargement pour initialiser les options
 fromUnit.dispatchEvent(new Event('change'));
+
+// Initialiser l'affichage de l'historique au chargement
+afficherHistorique();
 });

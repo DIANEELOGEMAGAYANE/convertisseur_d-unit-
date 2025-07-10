@@ -9,281 +9,289 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>Convertisseur d'unités</h1>
-      <p class="app-description">
-        Cette application vous permet de convertir facilement différentes unités
-        de mesure entre les systèmes français (SI) et anglais (impérial).
-        Sélectionnez le système, la grandeur, puis les unités à convertir.
-      </p>
-      <div class="converter-form">
-        <div class="systeme-select">
-          <label for="systeme">Système d'unités :</label>
-          <select id="systeme">
-            <option value="francais">Français (SI)</option>
-            <option value="anglais">Anglais (Impérial)</option>
-            <option value="combine">Combiné (SI + Impérial)</option>
-          </select>
+    <div class="app-wrapper">
+      <div class="container">
+        <h1>Convertisseur d'unités</h1>
+        <p class="app-description">
+          Cette application vous permet de convertir facilement différentes unités
+          de mesure entre les systèmes français (SI) et anglais (impérial).
+          Sélectionnez le système, la grandeur, puis les unités à convertir.
+        </p>
+        <div id="historique-toggle-container">
+          <button id="toggleHistoriqueBtn">Afficher l'historique</button>
         </div>
-        <div class="grandeur-select" style="display: none">
-          <label for="grandeur">Type de grandeur :</label>
-          <select id="grandeur">
-            <option value="base">Grandeurs de base (SI)</option>
-            <option value="derivee">Grandeurs dérivées</option>
-          </select>
-        </div>
-        <div class="input-group">
-          <label for="inputValue">Valeur à convertir:</label>
-          <input
-            type="number"
-            id="inputValue"
-            placeholder="Entrez une valeur"
-            step="any"
-          />
-        </div>
-        <div class="select-group">
-          <div class="unit-select">
-            <label for="fromUnit">De:</label>
-            <select id="fromUnit">
-              <!-- Longueur -->
-              <optgroup class="francais base" label="Longueur (SI)">
-                <option value="meter">Mètre (m)</option>
-                <option value="kilometer">Kilomètre (km)</option>
-                <option value="centimeter">Centimètre (cm)</option>
-              </optgroup>
-              <optgroup class="base" label="Longueur (Impérial)">
-                <option value="inch">Pouce (in)</option>
-                <option value="foot">Pied (ft)</option>
-                <option value="yard">Yard (yd)</option>
-                <option value="mile">Mile (mi)</option>
-              </optgroup>
+        <div class="main-flex">
+          <div class="converter-form">
+            <div class="systeme-select">
+              <label for="systeme">Système d'unités :</label>
+              <select id="systeme">
+                <option value="francais">Français (SI)</option>
+                <option value="anglais">Anglais (Impérial)</option>
+                <option value="combine">Combiné (SI + Impérial)</option>
+              </select>
+            </div>
+            <div class="grandeur-select" style="display: none">
+              <label for="grandeur">Type de grandeur :</label>
+              <select id="grandeur">
+                <option value="base">Grandeurs de base (SI)</option>
+                <option value="derivee">Grandeurs dérivées</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="inputValue">Valeur à convertir:</label>
+              <input
+                type="number"
+                id="inputValue"
+                placeholder="Entrez une valeur"
+                step="any"
+              />
+            </div>
+            <div class="select-group">
+              <div class="unit-select">
+                <label for="fromUnit">De:</label>
+                <select id="fromUnit">
+                  <!-- Longueur -->
+                  <optgroup class="francais base" label="Longueur (SI)">
+                    <option value="meter">Mètre (m)</option>
+                    <option value="kilometer">Kilomètre (km)</option>
+                    <option value="centimeter">Centimètre (cm)</option>
+                  </optgroup>
+                  <optgroup class="base" label="Longueur (Impérial)">
+                    <option value="inch">Pouce (in)</option>
+                    <option value="foot">Pied (ft)</option>
+                    <option value="yard">Yard (yd)</option>
+                    <option value="mile">Mile (mi)</option>
+                  </optgroup>
 
-              <!-- Masse -->
-              <optgroup class="francais base" label="Masse (SI)">
-                <option value="kilogram">Kilogramme (kg)</option>
-                <option value="gram">Gramme (g)</option>
-              </optgroup>
-              <optgroup class="base" label="Masse (Impérial)">
-                <option value="pound">Livre (lb)</option>
-                <option value="ounce">Once (oz)</option>
-              </optgroup>
+                  <!-- Masse -->
+                  <optgroup class="francais base" label="Masse (SI)">
+                    <option value="kilogram">Kilogramme (kg)</option>
+                    <option value="gram">Gramme (g)</option>
+                  </optgroup>
+                  <optgroup class="base" label="Masse (Impérial)">
+                    <option value="pound">Livre (lb)</option>
+                    <option value="ounce">Once (oz)</option>
+                  </optgroup>
 
-              <!-- Temps -->
-              <optgroup class="francais base" label="Temps (SI)">
-                <option value="second">Seconde (s)</option>
-                <option value="minute">Minute (min)</option>
-                <option value="hour">Heure (h)</option>
-                <option value="day">Jour</option>
-              </optgroup>
+                  <!-- Temps -->
+                  <optgroup class="francais base" label="Temps (SI)">
+                    <option value="second">Seconde (s)</option>
+                    <option value="minute">Minute (min)</option>
+                    <option value="hour">Heure (h)</option>
+                    <option value="day">Jour</option>
+                  </optgroup>
 
-              <!-- Intensité électrique -->
-              <optgroup class="francais base" label="Intensité électrique (SI)">
-                <option value="ampere">Ampère (A)</option>
-                <option value="milliampere">Milliampère (mA)</option>
-                <option value="microampere">Microampère (μA)</option>
-              </optgroup>
+                  <!-- Intensité électrique -->
+                  <optgroup class="francais base" label="Intensité électrique (SI)">
+                    <option value="ampere">Ampère (A)</option>
+                    <option value="milliampere">Milliampère (mA)</option>
+                    <option value="microampere">Microampère (μA)</option>
+                  </optgroup>
 
-              <!-- Température -->
-              <optgroup
-                class="francais base"
-                label="Température thermodynamique (SI)"
-              >
-                <option value="celsius">Celsius (°C)</option>
-                <option value="fahrenheit">Fahrenheit (°F)</option>
-                <option value="kelvin">Kelvin (K)</option>
-              </optgroup>
+                  <!-- Température -->
+                  <optgroup
+                    class="francais base"
+                    label="Température thermodynamique (SI)"
+                  >
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                    <option value="kelvin">Kelvin (K)</option>
+                  </optgroup>
 
-              <!-- Quantité de matière -->
-              <optgroup class="francais base" label="Quantité de matière (SI)">
-                <option value="mole">Mole (mol)</option>
-                <option value="millimole">Millimole (mmol)</option>
-                <option value="micromole">Micromole (μmol)</option>
-              </optgroup>
+                  <!-- Quantité de matière -->
+                  <optgroup class="francais base" label="Quantité de matière (SI)">
+                    <option value="mole">Mole (mol)</option>
+                    <option value="millimole">Millimole (mmol)</option>
+                    <option value="micromole">Micromole (μmol)</option>
+                  </optgroup>
 
-              <!-- Intensité lumineuse -->
-              <optgroup class="francais base" label="Intensité lumineuse (SI)">
-                <option value="candela">Candela (cd)</option>
-                <option value="millicandela">Millcandela (mcd)</option>
-                <option value="microcandela">Microcandela (μcd)</option>
-              </optgroup>
+                  <!-- Intensité lumineuse -->
+                  <optgroup class="francais base" label="Intensité lumineuse (SI)">
+                    <option value="candela">Candela (cd)</option>
+                    <option value="millicandela">Millcandela (mcd)</option>
+                    <option value="microcandela">Microcandela (μcd)</option>
+                  </optgroup>
 
-              <!-- Volume -->
-              <optgroup class="francais derivee" label="Volume (SI)">
-                <option value="liter">Litre (L)</option>
-                <option value="milliliter">Millilitre (mL)</option>
-              </optgroup>
-              <optgroup class="derivee" label="Volume (Impérial)">
-                <option value="gallon">Gallon (gal)</option>
-                <option value="quart">Quart (qt)</option>
-                <option value="pint">Pinte (pt)</option>
-                <option value="fluidOunce">Once liquide (fl oz)</option>
-              </optgroup>
+                  <!-- Volume -->
+                  <optgroup class="francais derivee" label="Volume (SI)">
+                    <option value="liter">Litre (L)</option>
+                    <option value="milliliter">Millilitre (mL)</option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Volume (Impérial)">
+                    <option value="gallon">Gallon (gal)</option>
+                    <option value="quart">Quart (qt)</option>
+                    <option value="pint">Pinte (pt)</option>
+                    <option value="fluidOunce">Once liquide (fl oz)</option>
+                  </optgroup>
 
-              <!-- Vitesse -->
-              <optgroup class="francais derivee" label="Vitesse (SI)">
-                <option value="meterPerSecond">Mètre par seconde (m/s)</option>
-                <option value="kilometerPerHour">
-                  Kilomètre par heure (km/h)
-                </option>
-              </optgroup>
-              <optgroup class="derivee" label="Vitesse (Impérial)">
-                <option value="milePerHour">Mile par heure (mph)</option>
-              </optgroup>
+                  <!-- Vitesse -->
+                  <optgroup class="francais derivee" label="Vitesse (SI)">
+                    <option value="meterPerSecond">Mètre par seconde (m/s)</option>
+                    <option value="kilometerPerHour">
+                      Kilomètre par heure (km/h)
+                    </option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Vitesse (Impérial)">
+                    <option value="milePerHour">Mile par heure (mph)</option>
+                  </optgroup>
 
-              <!-- Force -->
-              <optgroup class="francais derivee" label="Force (SI)">
-                <option value="newton">Newton (N)</option>
-                <option value="kilogramForce">Kilogramme-force (kgf)</option>
-              </optgroup>
-              <optgroup class="derivee" label="Force (Impérial)">
-                <option value="poundForce">Livre-force (lbf)</option>
-              </optgroup>
+                  <!-- Force -->
+                  <optgroup class="francais derivee" label="Force (SI)">
+                    <option value="newton">Newton (N)</option>
+                    <option value="kilogramForce">Kilogramme-force (kgf)</option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Force (Impérial)">
+                    <option value="poundForce">Livre-force (lbf)</option>
+                  </optgroup>
 
-              <!-- Pression -->
-              <optgroup class="francais derivee" label="Pression (SI)">
-                <option value="pascal">Pascal (Pa)</option>
-                <option value="bar">Bar</option>
-              </optgroup>
-              <optgroup class="derivee" label="Pression (Impérial)">
-                <option value="atmosphere">Atmosphère (atm)</option>
-              </optgroup>
+                  <!-- Pression -->
+                  <optgroup class="francais derivee" label="Pression (SI)">
+                    <option value="pascal">Pascal (Pa)</option>
+                    <option value="bar">Bar</option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Pression (Impérial)">
+                    <option value="atmosphere">Atmosphère (atm)</option>
+                  </optgroup>
 
-              <!-- Énergie -->
-              <optgroup class="francais derivee" label="Énergie (SI)">
-                <option value="joule">Joule (J)</option>
-                <option value="kilojoule">Kilojoule (kJ)</option>
-              </optgroup>
-              <optgroup class="derivee" label="Énergie (Mixte)">
-                <option value="calorie">Calorie (cal)</option>
-                <option value="kilocalorie">Kilocalorie (kcal)</option>
-              </optgroup>
-            </select>
+                  <!-- Énergie -->
+                  <optgroup class="francais derivee" label="Énergie (SI)">
+                    <option value="joule">Joule (J)</option>
+                    <option value="kilojoule">Kilojoule (kJ)</option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Énergie (Mixte)">
+                    <option value="calorie">Calorie (cal)</option>
+                    <option value="kilocalorie">Kilocalorie (kcal)</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="unit-select">
+                <label for="toUnit">Vers :</label>
+                <select id="toUnit">
+                  <!-- Longueur -->
+                  <optgroup class="francais base" label="Longueur (SI)">
+                    <option value="meter">Mètre (m)</option>
+                    <option value="kilometer">Kilomètre (km)</option>
+                    <option value="centimeter">Centimètre (cm)</option>
+                  </optgroup>
+                  <optgroup class="base" label="Longueur (Impérial)">
+                    <option value="inch">Pouce (in)</option>
+                    <option value="foot">Pied (ft)</option>
+                    <option value="yard">Yard (yd)</option>
+                    <option value="mile">Mile (mi)</option>
+                  </optgroup>
+
+                  <!-- Masse -->
+                  <optgroup class="francais base" label="Masse (SI)">
+                    <option value="kilogram">Kilogramme (kg)</option>
+                    <option value="gram">Gramme (g)</option>
+                  </optgroup>
+                  <optgroup class="base" label="Masse (Impérial)">
+                    <option value="pound">Livre (lb)</option>
+                    <option value="ounce">Once (oz)</option>
+                  </optgroup>
+
+                  <!-- Temps -->
+                  <optgroup class="francais base" label="Temps (SI)">
+                    <option value="second">Seconde (s)</option>
+                    <option value="minute">Minute (min)</option>
+                    <option value="hour">Heure (h)</option>
+                    <option value="day">Jour</option>
+                  </optgroup>
+
+                  <!-- Intensité électrique -->
+                  <optgroup class="francais base" label="Intensité électrique (SI)">
+                    <option value="ampere">Ampère (A)</option>
+                    <option value="milliampere">Milliampère (mA)</option>
+                    <option value="microampere">Microampère (μA)</option>
+                  </optgroup>
+
+                  <!-- Température -->
+                  <optgroup
+                    class="francais base"
+                    label="Température thermodynamique (SI)"
+                  >
+                    <option value="celsius">Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                    <option value="kelvin">Kelvin (K)</option>
+                  </optgroup>
+
+                  <!-- Quantité de matière -->
+                  <optgroup class="francais base" label="Quantité de matière (SI)">
+                    <option value="mole">Mole (mol)</option>
+                    <option value="millimole">Millimole (mmol)</option>
+                    <option value="micromole">Micromole (μmol)</option>
+                  </optgroup>
+
+                  <!-- Intensité lumineuse -->
+                  <optgroup class="francais base" label="Intensité lumineuse (SI)">
+                    <option value="candela">Candela (cd)</option>
+                    <option value="millicandela">Millcandela (mcd)</option>
+                    <option value="microcandela">Microcandela (μcd)</option>
+                  </optgroup>
+
+                  <!-- Volume -->
+                  <optgroup class="francais derivee" label="Volume (SI)">
+                    <option value="liter">Litre (L)</option>
+                    <option value="milliliter">Millilitre (mL)</option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Volume (Impérial)">
+                    <option value="gallon">Gallon (gal)</option>
+                    <option value="quart">Quart (qt)</option>
+                    <option value="pint">Pinte (pt)</option>
+                    <option value="fluidOunce">Once liquide (fl oz)</option>
+                  </optgroup>
+
+                  <!-- Vitesse -->
+                  <optgroup class="francais derivee" label="Vitesse (SI)">
+                    <option value="meterPerSecond">Mètre par seconde (m/s)</option>
+                    <option value="kilometerPerHour">
+                      Kilomètre par heure (km/h)
+                    </option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Vitesse (Impérial)">
+                    <option value="milePerHour">Mile par heure (mph)</option>
+                  </optgroup>
+
+                  <!-- Force -->
+                  <optgroup class="francais derivee" label="Force (SI)">
+                    <option value="newton">Newton (N)</option>
+                    <option value="kilogramForce">Kilogramme-force (kgf)</option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Force (Impérial)">
+                    <option value="poundForce">Livre-force (lbf)</option>
+                  </optgroup>
+
+                  <!-- Pression -->
+                  <optgroup class="francais derivee" label="Pression (SI)">
+                    <option value="pascal">Pascal (Pa)</option>
+                    <option value="bar">Bar</option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Pression (Impérial)">
+                    <option value="atmosphere">Atmosphère (atm)</option>
+                  </optgroup>
+
+                  <!-- Énergie -->
+                  <optgroup class="francais derivee" label="Énergie (SI)">
+                    <option value="joule">Joule (J)</option>
+                    <option value="kilojoule">Kilojoule (kJ)</option>
+                  </optgroup>
+                  <optgroup class="derivee" label="Énergie (Mixte)">
+                    <option value="calorie">Calorie (cal)</option>
+                    <option value="kilocalorie">Kilocalorie (kcal)</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+
+            <button id="convertButton">Convertir</button>
+
+            <div id="result" class="result-container">
+              <span id="resultValue"></span>
+            </div>
           </div>
-          <div class="unit-select">
-            <label for="toUnit">Vers :</label>
-            <select id="toUnit">
-              <!-- Longueur -->
-              <optgroup class="francais base" label="Longueur (SI)">
-                <option value="meter">Mètre (m)</option>
-                <option value="kilometer">Kilomètre (km)</option>
-                <option value="centimeter">Centimètre (cm)</option>
-              </optgroup>
-              <optgroup class="base" label="Longueur (Impérial)">
-                <option value="inch">Pouce (in)</option>
-                <option value="foot">Pied (ft)</option>
-                <option value="yard">Yard (yd)</option>
-                <option value="mile">Mile (mi)</option>
-              </optgroup>
-
-              <!-- Masse -->
-              <optgroup class="francais base" label="Masse (SI)">
-                <option value="kilogram">Kilogramme (kg)</option>
-                <option value="gram">Gramme (g)</option>
-              </optgroup>
-              <optgroup class="base" label="Masse (Impérial)">
-                <option value="pound">Livre (lb)</option>
-                <option value="ounce">Once (oz)</option>
-              </optgroup>
-
-              <!-- Temps -->
-              <optgroup class="francais base" label="Temps (SI)">
-                <option value="second">Seconde (s)</option>
-                <option value="minute">Minute (min)</option>
-                <option value="hour">Heure (h)</option>
-                <option value="day">Jour</option>
-              </optgroup>
-
-              <!-- Intensité électrique -->
-              <optgroup class="francais base" label="Intensité électrique (SI)">
-                <option value="ampere">Ampère (A)</option>
-                <option value="milliampere">Milliampère (mA)</option>
-                <option value="microampere">Microampère (μA)</option>
-              </optgroup>
-
-              <!-- Température -->
-              <optgroup
-                class="francais base"
-                label="Température thermodynamique (SI)"
-              >
-                <option value="celsius">Celsius (°C)</option>
-                <option value="fahrenheit">Fahrenheit (°F)</option>
-                <option value="kelvin">Kelvin (K)</option>
-              </optgroup>
-
-              <!-- Quantité de matière -->
-              <optgroup class="francais base" label="Quantité de matière (SI)">
-                <option value="mole">Mole (mol)</option>
-                <option value="millimole">Millimole (mmol)</option>
-                <option value="micromole">Micromole (μmol)</option>
-              </optgroup>
-
-              <!-- Intensité lumineuse -->
-              <optgroup class="francais base" label="Intensité lumineuse (SI)">
-                <option value="candela">Candela (cd)</option>
-                <option value="millicandela">Millcandela (mcd)</option>
-                <option value="microcandela">Microcandela (μcd)</option>
-              </optgroup>
-
-              <!-- Volume -->
-              <optgroup class="francais derivee" label="Volume (SI)">
-                <option value="liter">Litre (L)</option>
-                <option value="milliliter">Millilitre (mL)</option>
-              </optgroup>
-              <optgroup class="derivee" label="Volume (Impérial)">
-                <option value="gallon">Gallon (gal)</option>
-                <option value="quart">Quart (qt)</option>
-                <option value="pint">Pinte (pt)</option>
-                <option value="fluidOunce">Once liquide (fl oz)</option>
-              </optgroup>
-
-              <!-- Vitesse -->
-              <optgroup class="francais derivee" label="Vitesse (SI)">
-                <option value="meterPerSecond">Mètre par seconde (m/s)</option>
-                <option value="kilometerPerHour">
-                  Kilomètre par heure (km/h)
-                </option>
-              </optgroup>
-              <optgroup class="derivee" label="Vitesse (Impérial)">
-                <option value="milePerHour">Mile par heure (mph)</option>
-              </optgroup>
-
-              <!-- Force -->
-              <optgroup class="francais derivee" label="Force (SI)">
-                <option value="newton">Newton (N)</option>
-                <option value="kilogramForce">Kilogramme-force (kgf)</option>
-              </optgroup>
-              <optgroup class="derivee" label="Force (Impérial)">
-                <option value="poundForce">Livre-force (lbf)</option>
-              </optgroup>
-
-              <!-- Pression -->
-              <optgroup class="francais derivee" label="Pression (SI)">
-                <option value="pascal">Pascal (Pa)</option>
-                <option value="bar">Bar</option>
-              </optgroup>
-              <optgroup class="derivee" label="Pression (Impérial)">
-                <option value="atmosphere">Atmosphère (atm)</option>
-              </optgroup>
-
-              <!-- Énergie -->
-              <optgroup class="francais derivee" label="Énergie (SI)">
-                <option value="joule">Joule (J)</option>
-                <option value="kilojoule">Kilojoule (kJ)</option>
-              </optgroup>
-              <optgroup class="derivee" label="Énergie (Mixte)">
-                <option value="calorie">Calorie (cal)</option>
-                <option value="kilocalorie">Kilocalorie (kcal)</option>
-              </optgroup>
-            </select>
-          </div>
-        </div>
-
-        <button id="convertButton">Convertir</button>
-
-        <div id="result" class="result-container">
-          <span id="resultValue"></span>
         </div>
       </div>
+      <div id="historique" class="historique-side"></div>
     </div>
     <script src="js/script.js"></script>
   </body>
