@@ -308,11 +308,40 @@ function ajouterAHistorique(item) {
     afficherHistorique();
 }
 
+function openHistorique() {
+    historiqueVisible = true;
+    historiqueDiv.classList.add('visible');
+    appWrapper.classList.add('historique-ouvert');
+    toggleHistoriqueBtn.textContent = "Masquer l'historique";
+}
+
+function closeHistorique() {
+    historiqueVisible = false;
+    historiqueDiv.classList.remove('visible');
+    appWrapper.classList.remove('historique-ouvert');
+    toggleHistoriqueBtn.textContent = "Afficher l'historique";
+}
+
 function afficherHistorique() {
-    const historiqueDiv = document.getElementById('historique');
+    // NE PAS redéclarer : const historiqueDiv = document.getElementById('historique');
     historiqueDiv.innerHTML = '';
+
+    // Toujours créer/insérer le bouton de fermeture (pour mobile/tablette)
+    const closeBtn = document.createElement('button');
+    closeBtn.id = 'closeHistoriqueBtn';
+    closeBtn.setAttribute('aria-label', "Fermer l'historique");
+    closeBtn.innerHTML = `<svg width="32" height="32" viewBox="0 0 32 32">
+        <line x1="8" y1="8" x2="24" y2="24" stroke="#34445f" stroke-width="3" stroke-linecap="round"/>
+        <line x1="24" y1="8" x2="8" y2="24" stroke="#34445f" stroke-width="3" stroke-linecap="round"/>
+    </svg>`;
+    historiqueDiv.prepend(closeBtn);
+    setTimeout(() => {
+        const btn = document.getElementById('closeHistoriqueBtn');
+        if (btn) btn.onclick = closeHistorique;
+    }, 0);
+
     if (historique.length === 0) {
-        historiqueDiv.innerHTML = '<div class="historique-vide">Aucune conversion enregistrée.</div>';
+        historiqueDiv.innerHTML += '<div class="historique-vide">Aucune conversion enregistrée.</div>';
         return;
     }
     // Bouton pour effacer l'historique
@@ -348,15 +377,10 @@ historiqueDiv.classList.remove('visible');
 let historiqueVisible = false;
 
 toggleHistoriqueBtn.addEventListener('click', function() {
-    historiqueVisible = !historiqueVisible;
     if (historiqueVisible) {
-        historiqueDiv.classList.add('visible');
-        appWrapper.classList.add('historique-ouvert');
-        toggleHistoriqueBtn.textContent = 'Masquer l\'historique';
+        closeHistorique();
     } else {
-        historiqueDiv.classList.remove('visible');
-        appWrapper.classList.remove('historique-ouvert');
-        toggleHistoriqueBtn.textContent = 'Afficher l\'historique';
+        openHistorique();
     }
 });
 
