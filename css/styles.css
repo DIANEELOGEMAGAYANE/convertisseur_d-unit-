@@ -42,7 +42,6 @@ body {
     max-width: 800px;
     margin: 40px auto;
     padding: 30px;
-    height: 100%;
     background-color: rgba(255, 255, 255, 0.85);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
@@ -278,6 +277,8 @@ label {
     text-align: center;
     margin: 30px auto 0 auto;
     max-width: 800px;
+    display: flex;
+    justify-content: flex-end;
 }
 #toggleHistoriqueBtn {
     padding: 12px 32px;
