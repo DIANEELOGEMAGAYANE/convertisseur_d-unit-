@@ -162,21 +162,15 @@ const selectSysteme = document.getElementById("systeme")
 const grandeurSelectDiv = document.querySelector('.grandeur-select');
 const selectGrandeur = document.getElementById('grandeur');
 
-// Masquer le sélecteur de grandeur au départ
-grandeurSelectDiv.style.display = 'none';
 
 // Afficher le sélecteur de grandeur après le choix du système
 selectSysteme.addEventListener('change', function() {
-    if (selectSysteme.value) {
-        grandeurSelectDiv.style.display = 'block';
-    } else {
-        grandeurSelectDiv.style.display = 'none';
-    }
     // Réinitialiser le choix de grandeur
     selectGrandeur.selectedIndex = 0;
     // Masquer toutes les unités tant que la grandeur n'est pas choisie
     filtrerUnites();
 });
+
 
 // Filtrer les unités après le choix de la grandeur
 selectGrandeur.addEventListener('change', function() {
