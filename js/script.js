@@ -159,6 +159,7 @@ const resultValue = document.getElementById('resultValue');
 
 const selectSysteme = document.getElementById("systeme")
 
+// eslint-disable-next-line no-unused-vars
 const grandeurSelectDiv = document.querySelector('.grandeur-select');
 const selectGrandeur = document.getElementById('grandeur');
 
@@ -363,6 +364,7 @@ function afficherHistorique() {
 // === TOGGLE HISTORIQUE ===
 const historiqueDiv = document.getElementById('historique');
 const toggleHistoriqueBtn = document.getElementById('toggleHistoriqueBtn');
+// eslint-disable-next-line no-unused-vars
 const container = document.querySelector('.container');
 const appWrapper = document.querySelector('.app-wrapper');
 
